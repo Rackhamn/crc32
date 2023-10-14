@@ -110,4 +110,40 @@ unsigned int crc32_hash_ass(unsigned int hash, void * s, size_t start, size_t si
 	return ~hash;
 }
 
+// used to dump the crc32_table as a static table
+void print_crc32_table(char * name, unsigned int poly) {	
+	printf("\\\\ CRC32_POLY = 0x%08X (%s)\n", poly, get_endian_string_short());
+	printf("unsigned int %s[%i] = {\n\t", name, 256);
+	int k = 0;
+	for(int i = 0; i < 256; i++) {
+		printf("0x%08X, ", buffer[i]);
+		
+		// spacial formatting for sub 80 chars
+		k += 16;
+		if(k >= 80) {
+			printf("\n\t");
+			k = 0;
+		}
+	}
+	printf("\n};\n");
+}
+
+// used to dump the crc32_table as a compile time define
+void print_crc32_table_def(char * name, unsigned int poly) {	
+	printf("\\\\ CRC32_POLY = 0x%08X (%s)\n", poly, get_endian_string_short());
+	printf("#define %s \\\n\t", name);
+	int k = 0;
+	for(int i = 0; i < 256; i++) {
+		printf("0x%08X, ", buffer[i]);
+		
+		// spacial formatting for sub 80 chars
+		k += 16;
+		if(k >= 80) {
+			printf("\\\n\t");
+			k = 0;
+		}
+	}
+	printf("\n\n");
+}
+
 #endif /* CRC32_H */
