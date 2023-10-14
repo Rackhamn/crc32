@@ -15,6 +15,7 @@ int main(int argc, char ** argv) {
 	crc32_init(CRC32_POLY);
 	 
 	// print_crc32_table("crc32_256_table", 0xEDB88320);
+	// print_crc32_table_def("CRC32_256_TABLE", 0xEDB88320);
 	
 	char * string;
 	unsigned int hash;
