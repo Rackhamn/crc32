@@ -21,7 +21,7 @@ unsigned int crc32_hash_s(void * s, size_t size);
 unsigned int crc32_hash_ss(void * s, size_t start, size_t size);
 
 // rolling (appending): 
-unsigned int crc32_hash(unsigned int hash, void * s);
+unsigned int crc32_hash_a(unsigned int hash, void * s);
 ```
 
 
