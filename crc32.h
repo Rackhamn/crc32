@@ -116,7 +116,7 @@ void print_crc32_table(char * name, unsigned int poly) {
 	printf("unsigned int %s[%i] = {\n\t", name, 256);
 	int k = 0;
 	for(int i = 0; i < 256; i++) {
-		printf("0x%08X, ", buffer[i]);
+		printf("0x%08X, ", crc32_table[i]);
 		
 		// spacial formatting for sub 80 chars
 		k += 16;
@@ -134,7 +134,7 @@ void print_crc32_table_def(char * name, unsigned int poly) {
 	printf("#define %s \\\n\t", name);
 	int k = 0;
 	for(int i = 0; i < 256; i++) {
-		printf("0x%08X, ", buffer[i]);
+		printf("0x%08X, ", crc32_table[i]);
 		
 		// spacial formatting for sub 80 chars
 		k += 16;
