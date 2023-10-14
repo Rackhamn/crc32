@@ -11,7 +11,7 @@ Initialize the crc32_table from a polynomial with:
 void crc32_init(unsigned int poly);
 ```  
 
-Can be used directly:  
+It can be used directly:  
 ```
 // takes a regular cstring (char *)
 unsigned int crc32_hash(void * s);
@@ -19,7 +19,11 @@ unsigned int crc32_hash(void * s);
 // start and size are in bytes
 unsigned int crc32_hash_s(void * s, size_t size);
 unsigned int crc32_hash_ss(void * s, size_t start, size_t size);
+
+// rolling (appending): 
+unsigned int crc32_hash(unsigned int hash, void * s);
 ```
+
 
 If you use another polynomial, you can dump it with:
 ```
