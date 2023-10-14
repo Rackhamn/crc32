@@ -6,13 +6,13 @@ If compiling with gcc, then the crc32_table is alredy initialised to CRC32_POLY 
 Otherwise, the table is 0 and needs to be computed if you want it to work.  
 
 Initialize the crc32_table from a polynomial with:  
-```
+```c
 // Builds the poly table and reverses the bits for big endian systems at runtime
 void crc32_init(unsigned int poly);
 ```  
 
 It can be used directly:  
-```
+```c
 // === singlet ===
 // takes a regular cstring (char *)
 unsigned int crc32_hash(void * s);
@@ -29,7 +29,7 @@ unsigned int crc32_hash_ass(unsigned int hash, void * s, size_t start, size_t si
 
 
 If you use another polynomial, you can dump it with:
-```
+```c
 // dump static table
 void print_crc32_table(char * name, unsigned int poly);
 
