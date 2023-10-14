@@ -27,8 +27,11 @@ unsigned int crc32_hash_a(unsigned int hash, void * s);
 
 If you use another polynomial, you can dump it with:
 ```
-// in main.c
-void print_crc32_table(char * name, unsigned int poly, unsigned int * buffer, int size)
+// dump static table
+void print_crc32_table(char * name, unsigned int poly);
+
+// dump define
+void print_crc32_table_def(char * name, unsigned int poly);
 ```  
 
 
