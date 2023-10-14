@@ -13,6 +13,7 @@ void crc32_init(unsigned int poly);
 
 It can be used directly:  
 ```
+// === singlet ===
 // takes a regular cstring (char *)
 unsigned int crc32_hash(void * s);
 
@@ -20,8 +21,10 @@ unsigned int crc32_hash(void * s);
 unsigned int crc32_hash_s(void * s, size_t size);
 unsigned int crc32_hash_ss(void * s, size_t start, size_t size);
 
-// rolling (appending): 
+// === rolling (appending) ===
 unsigned int crc32_hash_a(unsigned int hash, void * s);
+unsigned int crc32_hash_s(unsigned int hash, void * s, size_t size);
+unsigned int crc32_hash_ss(unsigned int hash, void * s, size_t start, size_t size);
 ```
 
 
