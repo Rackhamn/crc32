@@ -60,17 +60,6 @@ void crc32_init(unsigned int poly) {
 	}
 }
 
-unsigned int crc32_hash(void * s) {
-	unsigned int hash = CRC32_SEED;
-	
-	const unsigned char * ss = (unsigned char *)s;
-	while(*ss) {
-		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
-	}
-	
-	return ~hash;
-}
-
 // size is in bytes
 unsigned int crc32_hash_s(void * s, size_t size) {
 	unsigned int hash = CRC32_SEED;
@@ -86,6 +75,34 @@ unsigned int crc32_hash_s(void * s, size_t size) {
 unsigned int crc32_hash_ss(void * s, size_t start, size_t size) {
 	unsigned int hash = CRC32_SEED;
 	
+	const unsigned char * ss = (unsigned char *)s + start;
+	while(size--)
+		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
+	
+	return ~hash;
+}
+
+// === rolling (appended) crc32 hash ===
+unsigned int crc32_hash_a(unsigned int hash, void * s) {
+	const unsigned char * ss = (unsigned char *)s;
+	while(*ss) {
+		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
+	}
+	
+	return ~hash;
+}
+
+// size is in bytes
+unsigned int crc32_hash_as(unsigned int hash, void * s, size_t size) {
+	const unsigned char * ss = (unsigned char *)s;
+	while(size--)
+		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
+	
+	return ~hash;
+}
+
+// start and size is in bytes
+unsigned int crc32_hash_ass(unsigned int hash, void * s, size_t start, size_t size) {	
 	const unsigned char * ss = (unsigned char *)s + start;
 	while(size--)
 		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
