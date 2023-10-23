@@ -93,7 +93,7 @@ unsigned int crc32_hash_a(unsigned int hash, void * s) {
 }
 
 // size is in bytes
-unsigned int crc32_hash_as(unsigned int hash, void * s, size_t size) {
+unsigned int crc32_hash_sa(unsigned int hash, void * s, size_t size) {
 	const unsigned char * ss = (unsigned char *)s;
 	while(size--)
 		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
@@ -102,7 +102,7 @@ unsigned int crc32_hash_as(unsigned int hash, void * s, size_t size) {
 }
 
 // start and size is in bytes
-unsigned int crc32_hash_ass(unsigned int hash, void * s, size_t start, size_t size) {	
+unsigned int crc32_hash_ssa(unsigned int hash, void * s, size_t start, size_t size) {	
 	const unsigned char * ss = (unsigned char *)s + start;
 	while(size--)
 		hash = (hash >> 8) ^ crc32_table[*ss++ ^ (hash & 0xFF)];
